@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Handbook | HTML/CSS/JS</title>
+    <style>
+        :root {
+            --primary: #2A2F4F;
+            --secondary: #917FB3;
+            --accent: #E5BEEC;
+            --light: #FDE2F3;
+            --text: #2A2F4F;
+            --gradient: linear-gradient(145deg, #917FB3 0%, #2A2F4F 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin: 3rem 0;
+            position: relative;
+            color: var(--primary);
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+            margin: 2.5rem 0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .table-container:hover {
+            transform: translateY(-5px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--gradient);
+            color: white;
+            padding: 1.2rem;
+            font-weight: 600;
+            text-align: left;
+            font-size: 0.95em;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        tr:hover {
+            background: #f5f3ff;
+        }
+
+        code {
+            background: rgba(229, 190, 236, 0.3);
+            padding: 0.3em 0.6em;
+            border-radius: 5px;
+            font-family: 'Fira Code', monospace;
+            color: var(--primary);
+            font-size: 0.9em;
+            border: 1px solid var(--accent);
+        }
+
+        .section-divider {
+            height: 2px;
+            background: var(--gradient);
+            margin: 4rem 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .table-container {
+                border-radius: 10px;
+                overflow-x: auto;
+            }
+            
+            table {
+                min-width: 700px;
+            }
+        }
+
+        /* Анимации */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-container {
+            animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+    </style>
+</head>
+<body>
+
+
+    <h1>HTML Теги и Атрибуты</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Тег</th>
+                <th>Атрибуты</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&lt;html&gt;</td>
+                <td>lang, dir, xmlns, manifest</td>
+                <td>Основной контейнер документа. Определяет язык, направление и манифест.</td>
+            </tr>
+            <tr>
+                <td>&lt;head&gt;</td>
+                <td>—</td>
+                <td>Содержит метаданные документа (например, стили, шрифты, скрипты).</td>
+            </tr>
+            <tr>
+                <td>&lt;meta&gt;</td>
+                <td>name, content, charset, http-equiv, property, http-equiv, content-type, viewport</td>
+                <td>Определяет метаданные документа: описание, кодировка, ключевые слова и настройки для мобильных устройств.</td>
+            </tr>
+            <tr>
+                <td>&lt;title&gt;</td>
+                <td>—</td>
+                <td>Заголовок страницы, отображаемый на вкладке браузера.</td>
+            </tr>
+            <tr>
+                <td>&lt;base&gt;</td>
+                <td>href, target</td>
+                <td>Определяет базовый URL для всех ссылок в документе.</td>
+            </tr>
+            <tr>
+                <td>&lt;link&gt;</td>
+                <td>rel, href, type, sizes, media, crossorigin, integrity, hreflang, referrerpolicy</td>
+                <td>Подключает внешние ресурсы, например, стили или шрифты.</td>
+            </tr>
+            <tr>
+                <td>&lt;style&gt;</td>
+                <td>type, media, scoped</td>
+                <td>Встраивает CSS-стили в документ.</td>
+            </tr>
+            <tr>
+                <td>&lt;body&gt;</td>
+                <td>onload, onunload, class, id, style</td>
+                <td>Содержит основной контент страницы.</td>
+            </tr>
+            <tr>
+                <td>&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;</td>
+                <td>align, class, id, style</td>
+                <td>Заголовки разных уровней (от самого важного к менее важным).</td>
+            </tr>
+            <tr>
+                <td>&lt;p&gt;</td>
+                <td>align, class, id, style</td>
+                <td>Определяет абзац текста.</td>
+            </tr>
+            <tr>
+                <td>&lt;a&gt;</td>
+                <td>href, target, rel, title, download, hreflang, ping, referrerpolicy, type</td>
+                <td>Создает ссылку на другой документ или ресурс.</td>
+            </tr>
+            <tr>
+                <td>&lt;img&gt;</td>
+                <td>src, alt, title, width, height, loading, usemap, ismap, decoding</td>
+                <td>Вставляет изображение, поддерживает различные атрибуты для размеров и загрузки.</td>
+            </tr>
+            <tr>
+                <td>&lt;div&gt;</td>
+                <td>id, class, style, data-*, lang, role, aria-*</td>
+                <td>Контейнер для других элементов, часто используется для структуры.</td>
+            </tr>
+            <tr>
+                <td>&lt;span&gt;</td>
+                <td>id, class, style, data-*</td>
+                <td>Строчный контейнер для текста или других элементов.</td>
+            </tr>
+            <tr>
+                <td>&lt;ul&gt;</td>
+                <td>type, compact, id, class</td>
+                <td>Создает ненумерованный список.</td>
+            </tr>
+            <tr>
+                <td>&lt;ol&gt;</td>
+                <td>type, start, reversed, id, class</td>
+                <td>Создает нумерованный список.</td>
+            </tr>
+            <tr>
+                <td>&lt;li&gt;</td>
+                <td>value, id, class, style</td>
+                <td>Элемент списка.</td>
+            </tr>
+            <tr>
+                <td>&lt;form&gt;</td>
+                <td>action, method, name, target, enctype, autocomplete, accept-charset, novalidate</td>
+                <td>Форма для ввода данных пользователя, поддерживает различные атрибуты для отправки данных.</td>
+            </tr>
+            <tr>
+                <td>&lt;input&gt;</td>
+                <td>type, name, value, placeholder, required, checked, disabled, readonly, maxlength, min, max, step, autofocus, accept, pattern, multiple</td>
+                <td>Поле ввода для различных типов данных (текст, пароль, чекбокс и т. д.).</td>
+            </tr>
+            <tr>
+                <td>&lt;button&gt;</td>
+                <td>type, name, value, disabled, onclick, autofocus, formaction, formmethod</td>
+                <td>Кнопка, используемая для отправки формы или выполнения действий.</td>
+            </tr>
+            <tr>
+                <td>&lt;textarea&gt;</td>
+                <td>rows, cols, placeholder, name, required, maxlength, readonly, autofocus</td>
+                <td>Многострочное поле ввода текста.</td>
+            </tr>
+            <tr>
+                <td>&lt;select&gt;</td>
+                <td>name, multiple, size, required, disabled, autofocus, form, autofocus</td>
+                <td>Выпадающий список для выбора значений.</td>
+            </tr>
+            <tr>
+                <td>&lt;option&gt;</td>
+                <td>value, selected, disabled, label, class, id</td>
+                <td>Элемент списка в &lt;select&gt;.</td>
+            </tr>
+            <tr>
+                <td>&lt;optgroup&gt;</td>
+                <td>label, disabled, class, id</td>
+                <td>Группирует элементы &lt;option&gt; в выпадающем списке.</td>
+            </tr>
+            <tr>
+                <td>&lt;label&gt;</td>
+                <td>for, id, class, style</td>
+                <td>Связывает текст с элементом формы (например, с полем ввода).</td>
+            </tr>
+            <tr>
+                <td>&lt;table&gt;</td>
+                <td>border, cellspacing, cellpadding, width, height, align, summary, caption, role</td>
+                <td>Создает таблицу.</td>
+            </tr>
+            <tr>
+                <td>&lt;tr&gt;</td>
+                <td>align, valign, class, id</td>
+                <td>Определяет строку таблицы.</td>
+            </tr>
+            <tr>
+                <td>&lt;td&gt;</td>
+                <td>colspan, rowspan, align, valign, width, height, style, data-*</td>
+                <td>Ячейка таблицы.</td>
+            </tr>
+            <tr>
+                <td>&lt;th&gt;</td>
+                <td>colspan, rowspan, scope, align, valign, style, data-*</td>
+                <td>Заголовочная ячейка таблицы.</td>
+            </tr>
+            <tr>
+                <td>&lt;thead&gt;</td>
+                <td>—</td>
+                <td>Группирует заголовки таблицы.</td>
+            </tr>
+            <tr>
+                <td>&lt;tbody&gt;</td>
+                <td>—</td>
+                <td>Группирует содержимое таблицы.</td>
+            </tr>
+            <tr>
+                <td>&lt;tfoot&gt;</td>
+                <td>—</td>
+                <td>Группирует подвал таблицы.</td>
+            </tr>
+            <tr>
+                <td>&lt;iframe&gt;</td>
+                <td>src, width, height, name, frameborder, scrolling, allowfullscreen, sandbox, allow, referrerpolicy</td>
+                <td>Встраивает другой HTML-документ в текущий.</td>
+            </tr>
+            <tr>
+                <td>&lt;object&gt;</td>
+                <td>data, type, width, height, name, usemap, classid, codebase</td>
+                <td>Встраивает объект, например, Flash, PDF и т. д.</td>
+            </tr>
+            <tr>
+                <td>&lt;embed&gt;</td>
+                <td>src, type, width, height, autoplay, loop, volume, muted</td>
+                <td>Встраивает внешний мультимедийный контент, например, аудио или видео.</td>
+            </tr>
+            <tr>
+                <td>&lt;video&gt;</td>
+                <td>src, controls, autoplay, loop, muted, poster, width, height, preload, playsinline, autoplay</td>
+                <td>Вставляет видео.</td>
+            </tr>
+            <tr>
+                <td>&lt;audio&gt;</td>
+                <td>src, controls, autoplay, loop, muted, preload, volume, autoplay, type</td>
+                <td>Вставляет аудиофайл.</td>
+            </tr>
+            <tr>
+                <td>&lt;canvas&gt;</td>
+                <td>width, height, id, class, style, data-*</td>
+                <td>Создает область для рисования, используется с JavaScript.</td>
+            </tr>
+            <tr>
+                <td>&lt;svg&gt;</td>
+                <td>width, height, viewBox, version, xmlns, id, class, style</td>
+                <td>Вставляет SVG-графику.</td>
+            </tr>
+            <tr>
+                <td>&lt;math&gt;</td>
+                <td>xmlns, xmlns:xlink, id, style</td>
+                <td>Встраивает математические выражения в формате MathML.</td>
+            </tr>
+            <tr>
+                <td>&lt;noscript&gt;</td>
+                <td>—</td>
+                <td>Содержит текст, который отображается, если JavaScript отключен в браузере.</td>
+            </tr>
+            <tr>
+                <td>&lt;ruby&gt;</td>
+                <td>xmlns, class, style</td>
+                <td>Вставляет аннотированный текст, обычно используется для китайских иероглифов или транскрипций.</td>
+            </tr>
+            <tr>
+                <td>&lt;rt&gt;</td>
+                <td>—</td>
+                <td>Определяет транскрипцию в контексте тега &lt;ruby&gt;.</td>
+            </tr>
+            <tr>
+                <td>&lt;rp&gt;</td>
+                <td>—</td>
+                <td>Предоставляет альтернативное представление для браузеров без поддержки &lt;ruby&gt;.</td>
+            </tr>
+            <tr>
+                <td>&lt;wbr&gt;</td>
+                <td>—</td>
+                <td>Разрешает браузеру разрывать строку в заданной точке.</td>
+            </tr>
+            <tr>
+                <td>&lt;b&gt;</td>
+                <td>—</td>
+                <td>Делает текст жирным.</td>
+            </tr>
+            <tr>
+                <td>&lt;i&gt;</td>
+                <td>—</td>
+                <td>Делает текст курсивным.</td>
+            </tr>
+            <tr>
+                <td>&lt;u&gt;</td>
+                <td>—</td>
+                <td>Подчеркивает текст.</td>
+            </tr>
+            <tr>
+                <td>&lt;strong&gt;</td>
+                <td>—</td>
+                <td>Выделяет текст как важный, обычно жирным.</td>
+            </tr>
+            <tr>
+                <td>&lt;em&gt;</td>
+                <td>—</td>
+                <td>Выделяет текст как акцентированный, обычно курсивом.</td>
+            </tr>
+            <tr>
+                <td>&lt;mark&gt;</td>
+                <td>—</td>
+                <td>Выделяет текст, обычно желтым фоном.</td>
+            </tr>
+            <tr>
+                <td>&lt;small&gt;</td>
+                <td>—</td>
+                <td>Делает текст меньшим.</td>
+            </tr>
+            <tr>
+                <td>&lt;del&gt;</td>
+                <td>—</td>
+                <td>Перечеркнутый текст.</td>
+            </tr>
+            <tr>
+                <td>&lt;ins&gt;</td>
+                <td>—</td>
+                <td>Текст, который был вставлен в документ.</td>
+            </tr>
+            <tr>
+                <td>&lt;q&gt;</td>
+                <td>—</td>
+                <td>Вставляет короткую цитату.</td>
+            </tr>
+            <tr>
+                <td>&lt;blockquote&gt;</td>
+                <td>—</td>
+                <td>Вставляет длинную цитату.</td>
+            </tr>
+            <tr>
+                <td>&lt;cite&gt;</td>
+                <td>—</td>
+                <td>Ссылается на источник цитаты.</td>
+            </tr>
+            <tr>
+                <td>&lt;code&gt;</td>
+                <td>—</td>
+                <td>Отображает программный код.</td>
+            </tr>
+            <tr>
+                <td>&lt;pre&gt;</td>
+                <td>—</td>
+                <td>Сохраняет форматирование текста (например, пробелы, переводы строк).</td>
+            </tr>
+            <tr>
+                <td>&lt;sub&gt;</td>
+                <td>—</td>
+                <td>Нижний индекс.</td>
+            </tr>
+            <tr>
+                <td>&lt;sup&gt;</td>
+                <td>—</td>
+                <td>Верхний индекс.</td>
+            </tr>
+            <tr>
+                <td>&lt;bdi&gt;</td>
+                <td>—</td>
+                <td>Определяет область для изолирования текста с измененным направлением.</td>
+            </tr>
+            <tr>
+                <td>&lt;bdo&gt;</td>
+                <td>dir</td>
+                <td>Изменяет направление текста (например, справа налево).</td>
+            </tr>
+            <tr>
+                <td>&lt;ruby&gt;</td>
+                <td>—</td>
+                <td>Представляет текст с аннотациями (обычно для китайских иероглифов).</td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>Свойства CSS</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Свойство</th>
+                <th>Описание</th>
+                <th>Пример</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>accent-color</td>
+                <td>Устанавливает основной цвет для элементов управления (например, для кнопок и флажков).</td>
+                <td>accent-color: blue;</td>
+            </tr>
+            <tr>
+                <td>align-content</td>
+                <td>Определяет выравнивание содержимого в контейнере с флексбоксом или сеткой (по поперечной оси).</td>
+                <td>align-content: center;</td>
+            </tr>
+            <tr>
+                <td>align-items</td>
+                <td>Устанавливает выравнивание флекс-элементов внутри контейнера по поперечной оси.</td>
+                <td>align-items: flex-start;</td>
+            </tr>
+            <tr>
+                <td>align-self</td>
+                <td>Устанавливает индивидуальное выравнивание элемента по поперечной оси в контейнере с флексбоксом.</td>
+                <td>align-self: stretch;</td>
+            </tr>
+            <tr>
+                <td>all</td>
+                <td>Сбрасывает все свойства, установленные для элемента, к их начальным значениям.</td>
+                <td>all: unset;</td>
+            </tr>
+            <tr>
+                <td>animation-delay</td>
+                <td>Устанавливает задержку перед началом анимации.</td>
+                <td>animation-delay: 1s;</td>
+            </tr>
+            <tr>
+                <td>animation-duration</td>
+                <td>Устанавливает продолжительность анимации.</td>
+                <td>animation-duration: 3s;</td>
+            </tr>
+            <tr>
+                <td>animation-iteration-count</td>
+                <td>Определяет количество повторений анимации.</td>
+                <td>animation-iteration-count: infinite;</td>
+            </tr>
+            <tr>
+                <td>animation-timing-function</td>
+                <td>Устанавливает временную функцию анимации, определяющую её скорость.</td>
+                <td>animation-timing-function: ease-in-out;</td>
+            </tr>
+            <tr>
+                <td>backface-visibility</td>
+                <td>Устанавливает, видима ли задняя сторона элемента при поворотах.</td>
+                <td>backface-visibility: hidden;</td>
+            </tr>
+            <tr>
+                <td>background-blend-mode</td>
+                <td>Устанавливает режим наложения для фона, если его несколько.</td>
+                <td>background-blend-mode: multiply;</td>
+            </tr>
+            <tr>
+                <td>background-position-x</td>
+                <td>Устанавливает горизонтальное положение фонового изображения.</td>
+                <td>background-position-x: center;</td>
+            </tr>
+            <tr>
+                <td>background-position-y</td>
+                <td>Устанавливает вертикальное положение фонового изображения.</td>
+                <td>background-position-y: top;</td>
+            </tr>
+            <tr>
+                <td>border-collapse</td>
+                <td>Устанавливает, будут ли рамки таблицы объединяться или разделяться.</td>
+                <td>border-collapse: collapse;</td>
+            </tr>
+            <tr>
+                <td>border-image</td>
+                <td>Устанавливает изображение в качестве рамки.</td>
+                <td>border-image: url('border.png') 30 stretch;</td>
+            </tr>
+            <tr>
+                <td>border-image-outset</td>
+                <td>Устанавливает, на сколько элементов рамка выходит за пределы элемента.</td>
+                <td>border-image-outset: 5px;</td>
+            </tr>
+            <tr>
+                <td>border-image-repeat</td>
+                <td>Определяет, как будет повторяться изображение рамки.</td>
+                <td>border-image-repeat: round;</td>
+            </tr>
+            <tr>
+                <td>border-image-slice</td>
+                <td>Определяет, как изображение рамки будет нарезано.</td>
+                <td>border-image-slice: 30%;</td>
+            </tr>
+            <tr>
+                <td>border-left</td>
+                <td>Устанавливает свойства для левой рамки элемента.</td>
+                <td>border-left: 3px solid red;</td>
+            </tr>
+            <tr>
+                <td>border-right</td>
+                <td>Устанавливает свойства для правой рамки элемента.</td>
+                <td>border-right: 3px solid blue;</td>
+            </tr>
+            <tr>
+                <td>border-top</td>
+                <td>Устанавливает свойства для верхней рамки элемента.</td>
+                <td>border-top: 3px solid green;</td>
+            </tr>
+            <tr>
+                <td>border-bottom</td>
+                <td>Устанавливает свойства для нижней рамки элемента.</td>
+                <td>border-bottom: 3px solid yellow;</td>
+            </tr>
+            <tr>
+                <td>box-decoration-break</td>
+                <td>Устанавливает, как должны обрабатываться разрывы в строках для фона и рамок.</td>
+                <td>box-decoration-break: clone;</td>
+            </tr>
+            <tr>
+                <td>box-shadow</td>
+                <td>Устанавливает тень для элемента.</td>
+                <td>box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);</td>
+            </tr>
+            <tr>
+                <td>break-before</td>
+                <td>Устанавливает, должен ли элемент начинаться с новой строки (для разбиения текста).</td>
+                <td>break-before: page;</td>
+            </tr>
+            <tr>
+                <td>break-after</td>
+                <td>Устанавливает, должен ли элемент завершаться с новой строки.</td>
+                <td>break-after: column;</td>
+            </tr>
+            <tr>
+                <td>break-inside</td>
+                <td>Определяет, где можно разорвать элемент внутри контейнера.</td>
+                <td>break-inside: avoid;</td>
+            </tr>
+            <tr>
+                <td>caret-color</td>
+                <td>Устанавливает цвет курсора в текстовых полях.</td>
+                <td>caret-color: red;</td>
+            </tr>
+            <tr>
+                <td>clip-path</td>
+                <td>Обрезает элемент по заданной форме (например, круг).</td>
+                <td>clip-path: ellipse(50% 50% at 50% 50%);</td>
+            </tr>
+            <tr>
+                <td>column-count</td>
+                <td>Устанавливает количество колонок в многостолбцовом макете.</td>
+                <td>column-count: 3;</td>
+            </tr>
+            <tr>
+                <td>column-fill</td>
+                <td>Устанавливает, как должны заполняться колонки (высота колонок).</td>
+                <td>column-fill: balance;</td>
+            </tr>
+            <tr>
+                <td>column-gap</td>
+                <td>Устанавливает зазор между колонками в многостолбцовом макете.</td>
+                <td>column-gap: 20px;</td>
+            </tr>
+            <tr>
+                <td>column-rule</td>
+                <td>Устанавливает стиль, цвет и толщину линии между колонками.</td>
+                <td>column-rule: 1px solid black;</td>
+            </tr>
+            <tr>
+                <td>column-span</td>
+                <td>Устанавливает, сколько колонок должен занимать элемент в многостолбцовом макете.</td>
+                <td>column-span: all;</td>
+            </tr>
+            <tr>
+                <td>contain</td>
+                <td>Устанавливает, как должны быть ограничены элементы внутри контейнера.</td>
+                <td>contain: layout;</td>
+            </tr>
+            <tr>
+                <td>content</td>
+                <td>Устанавливает содержимое, которое будет вставлено перед или после элемента (например, для ::before).</td>
+                <td>content: "New text";</td>
+            </tr>
+            <tr>
+                <td>counter-increment</td>
+                <td>Увеличивает счетчик, используемый для генерации числовых значений.</td>
+                <td>counter-increment: section;</td>
+            </tr>
+            <tr>
+                <td>counter-reset</td>
+                <td>Сбрасывает счетчик на начало.</td>
+                <td>counter-reset: section 0;</td>
+            </tr>
+            <tr>
+                <td>direction</td>
+                <td>Устанавливает направление текста (например, слева направо или справа налево).</td>
+                <td>direction: rtl;</td>
+            </tr>
+            <tr>
+                <td>display</td>
+                <td>Устанавливает, как элемент должен отображаться (например, block, inline).</td>
+                <td>display: block;</td>
+            </tr>
+            <tr>
+                <td>empty-cells</td>
+                <td>Устанавливает, должны ли отображаться пустые ячейки таблицы.</td>
+                <td>empty-cells: show;</td>
+            </tr>
+            <tr>
+                <td>filter</td>
+                <td>Применяет графические фильтры, такие как размытие и контрастность.</td>
+                <td>filter: grayscale(100%);</td>
+            </tr>
+            <tr>
+                <td>flex-basis</td>
+                <td>Устанавливает начальный размер флекс-элемента до распределения свободного пространства.</td>
+                <td>flex-basis: 200px;</td>
+            </tr>
+            <tr>
+                <td>flex-grow</td>
+                <td>Устанавливает, насколько флекс-элемент будет расти относительно других элементов.</td>
+                <td>flex-grow: 2;</td>
+            </tr>
+            <tr>
+                <td>flex-shrink</td>
+                <td>Устанавливает, насколько флекс-элемент будет сжиматься относительно других элементов.</td>
+                <td>flex-shrink: 1;</td>
+            </tr>
+            <tr>
+                <td>flex-wrap</td>
+                <td>Устанавливает, как флекс-элементы должны оборачиваться в контейнере.</td>
+                <td>flex-wrap: wrap-reverse;</td>
+            </tr>
+            <tr>
+                <td>gap</td>
+                <td>Устанавливает зазоры между элементами в сетке или флекс-контейнере.</td>
+                <td>gap: 10px;</td>
+            </tr>
+            <tr>
+                <td>grid-template-columns</td>
+                <td>Определяет структуру столбцов сетки (Grid).</td>
+                <td>grid-template-columns: 1fr 2fr;</td>
+            </tr>
+            <tr>
+                <td>grid-template-rows</td>
+                <td>Определяет структуру строк сетки (Grid).</td>
+                <td>grid-template-rows: 100px 200px;</td>
+            </tr>
+            <tr>
+                <td>grid-gap</td>
+                <td>Устанавливает зазоры между строками и колонками в сетке (Grid).</td>
+                <td>grid-gap: 10px;</td>
+            </tr>
+            <tr>
+                <td>grid-template-areas</td>
+                <td>Устанавливает именованные области в сетке (Grid).</td>
+                <td>grid-template-areas: 'header header' 'main sidebar';</td>
+            </tr>
+            <tr>
+                <td>justify-content</td>
+                <td>Выравнивает элементы по основной оси (для флексбоксов и сетки).</td>
+                <td>justify-content: space-between;</td>
+            </tr>
+            <tr>
+                <td>justify-items</td>
+                <td>Выравнивает элементы внутри ячеек сетки (Grid).</td>
+                <td>justify-items: center;</td>
+            </tr>
+            <tr>
+                <td>justify-self</td>
+                <td>Выравнивает элемент внутри своей ячейки в сетке (Grid).</td>
+                <td>justify-self: end;</td>
+            </tr>
+            <tr>
+                <td>left</td>
+                <td>Устанавливает левый отступ для позиционированного элемента.</td>
+                <td>left: 10px;</td>
+            </tr>
+            <tr>
+                <td>letter-spacing</td>
+                <td>Устанавливает расстояние между буквами текста.</td>
+                <td>letter-spacing: 2px;</td>
+            </tr>
+            <tr>
+                <td>line-height</td>
+                <td>Устанавливает высоту строки текста.</td>
+                <td>line-height: 1.5;</td>
+            </tr>
+            <tr>
+                <td>list-style</td>
+                <td>Устанавливает стиль маркера для списков.</td>
+                <td>list-style: square inside;</td>
+            </tr>
+            <tr>
+                <td>margin</td>
+                <td>Устанавливает внешние отступы для элемента.</td>
+                <td>margin: 20px 10px 30px 5px;</td>
+            </tr>
+            <tr>
+                <td>margin-bottom</td>
+                <td>Устанавливает внешний отступ снизу для элемента.</td>
+                <td>margin-bottom: 20px;</td>
+            </tr>
+            <tr>
+                <td>margin-left</td>
+                <td>Устанавливает внешний отступ слева для элемента.</td>
+                <td>margin-left: 15px;</td>
+            </tr>
+            <tr>
+                <td>margin-right</td>
+                <td>Устанавливает внешний отступ справа для элемента.</td>
+                <td>margin-right: 15px;</td>
+            </tr>
+            <tr>
+                <td>margin-top</td>
+                <td>Устанавливает внешний отступ сверху для элемента.</td>
+                <td>margin-top: 10px;</td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>JS</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Тема/Свойство/Метод</th>
+                <th>Описание</th>
+                <th>Пример</th>
+                <th>Передаваемые данные</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Объекты</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>Object</code></td>
+                <td>Базовый объект, от которого наследуются все другие объекты в JavaScript.</td>
+                <td><code>let obj = new Object();</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>Object.create()</code></td>
+                <td>Создает новый объект с указанным прототипом.</td>
+                <td><code>let obj = Object.create(protoObj);</code></td>
+                <td>Прототип (объект)</td>
+            </tr>
+            <tr>
+                <td><code>Object.freeze()</code></td>
+                <td>Замораживает объект (делает его неизменным).</td>
+                <td><code>Object.freeze(obj);</code></td>
+                <td>Объект (для заморозки)</td>
+            </tr>
+            <tr>
+                <td><code>Object.seal()</code></td>
+                <td>Закрывает объект от добавления новых свойств.</td>
+                <td><code>Object.seal(obj);</code></td>
+                <td>Объект (для запечатывания)</td>
+            </tr>
+            <tr>
+                <td><code>Object.is()</code></td>
+                <td>Сравнивает два значения на строгое равенство (включая NaN).</td>
+                <td><code>Object.is(0, -0) → false</code></td>
+                <td>Два значения (для сравнения)</td>
+            </tr>
+            <tr>
+                <td><code>Object.assign()</code></td>
+                <td>Копирует значения всех собственных перечисляемых свойств из одного или нескольких исходных объектов в целевой объект.</td>
+                <td><code>Object.assign(target, source);</code></td>
+                <td>Целевой объект и исходные объекты</td>
+            </tr>
+            <tr>
+                <td><code>Object.values()</code></td>
+                <td>Возвращает массив собственных перечисляемых значений объекта.</td>
+                <td><code>Object.values(obj);</code></td>
+                <td>Объект (для извлечения значений)</td>
+            </tr>
+            <tr>
+                <td><code>Object.keys()</code></td>
+                <td>Возвращает массив собственных перечисляемых имен свойств объекта.</td>
+                <td><code>Object.keys(obj);</code></td>
+                <td>Объект (для извлечения ключей)</td>
+            </tr>
+            <tr>
+                <td><strong>Массивы</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>Array.isArray()</code></td>
+                <td>Проверяет, является ли объект массивом.</td>
+                <td><code>Array.isArray([1, 2, 3]) → true</code></td>
+                <td>Объект (для проверки)</td>
+            </tr>
+            <tr>
+                <td><code>Array.from()</code></td>
+                <td>Создает новый массив из любого объекта, имеющего итерируемый интерфейс.</td>
+                <td><code>Array.from('hello') → ['h', 'e', 'l', 'l', 'o']</code></td>
+                <td>Итерируемый объект (например, строка или Set)</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.find()</code></td>
+                <td>Возвращает первый элемент, удовлетворяющий условию в функции.</td>
+                <td><code>[1, 2, 3].find(x => x > 1) → 2</code></td>
+                <td>Функция (принимает элемент массива и возвращает boolean)</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.includes()</code></td>
+                <td>Проверяет, содержит ли массив определенный элемент.</td>
+                <td><code>[1, 2, 3].includes(2) → true</code></td>
+                <td>Элемент (для проверки)</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.some()</code></td>
+                <td>Проверяет, удовлетворяет ли хотя бы один элемент условию.</td>
+                <td><code>[1, 2, 3].some(x => x > 2) → true</code></td>
+                <td>Функция (принимает элемент массива и возвращает boolean)</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.every()</code></td>
+                <td>Проверяет, удовлетворяют ли все элементы массиву условию.</td>
+                <td><code>[1, 2, 3].every(x => x > 0) → true</code></td>
+                <td>Функция (принимает элемент массива и возвращает boolean)</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.push()</code></td>
+                <td>Добавляет один или несколько элементов в конец массива.</td>
+                <td><code>arr.push(4)</code></td>
+                <td>Элементы (для добавления)</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.pop()</code></td>
+                <td>Удаляет последний элемент из массива.</td>
+                <td><code>arr.pop()</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.shift()</code></td>
+                <td>Удаляет первый элемент из массива.</td>
+                <td><code>arr.shift()</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>Array.prototype.unshift()</code></td>
+                <td>Добавляет один или несколько элементов в начало массива.</td>
+                <td><code>arr.unshift(0)</code></td>
+                <td>Элементы (для добавления)</td>
+            </tr>
+            <tr>
+                <td><strong>Методы строк</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>replace()</code></td>
+                <td>Заменяет часть строки на другую.</td>
+                <td><code>'Hello world'.replace('world', 'JavaScript') → 'Hello JavaScript'</code></td>
+                <td>Подстрока (для поиска) и замена (строка или регулярное выражение)</td>
+            </tr>
+            <tr>
+                <td><code>toLowerCase()</code></td>
+                <td>Преобразует строку в нижний регистр.</td>
+                <td><code>'HELLO'.toLowerCase() → 'hello'</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>toUpperCase()</code></td>
+                <td>Преобразует строку в верхний регистр.</td>
+                <td><code>'hello'.toUpperCase() → 'HELLO'</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>trim()</code></td>
+                <td>Удаляет пробелы с начала и конца строки.</td>
+                <td><code>'  Hello '.trim() → 'Hello'</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>repeat()</code></td>
+                <td>Повторяет строку несколько раз.</td>
+                <td><code>'a'.repeat(3) → 'aaa'</code></td>
+                <td>Число (сколько раз повторить строку)</td>
+            </tr>
+            <tr>
+                <td><code>charAt()</code></td>
+                <td>Возвращает символ по указанному индексу.</td>
+                <td><code>'hello'.charAt(1) → 'e'</code></td>
+                <td>Индекс (для поиска)</td>
+            </tr>
+            <tr>
+                <td><code>split()</code></td>
+                <td>Разделяет строку на массив подстрок.</td>
+                <td><code>'a,b,c'.split(',') → ['a', 'b', 'c']</code></td>
+                <td>Разделитель (строка или регулярное выражение)</td>
+            </tr>
+            <tr>
+                <td><strong>Работа с числами</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>Number()</code></td>
+                <td>Преобразует строку или другой тип в число.</td>
+                <td><code>Number('123') → 123</code></td>
+                <td>Строка (для преобразования)</td>
+            </tr>
+            <tr>
+                <td><code>parseInt()</code></td>
+                <td>Преобразует строку в целое число.</td>
+                <td><code>parseInt('123.45') → 123</code></td>
+                <td>Строка (для преобразования)</td>
+            </tr>
+            <tr>
+                <td><code>parseFloat()</code></td>
+                <td>Преобразует строку в число с плавающей точкой.</td>
+                <td><code>parseFloat('123.45') → 123.45</code></td>
+                <td>Строка (для преобразования)</td>
+            </tr>
+            <tr>
+                <td><code>isNaN()</code></td>
+                <td>Проверяет, является ли значение NaN.</td>
+                <td><code>isNaN('123') → false</code></td>
+                <td>Значение (для проверки)</td>
+            </tr>
+            <tr>
+                <td><code>Math.random()</code></td>
+                <td>Генерирует случайное число от 0 до 1.</td>
+                <td><code>Math.random() → 0.123456</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>Math.round()</code></td>
+                <td>Округляет число до ближайшего целого.</td>
+                <td><code>Math.round(4.5) → 5</code></td>
+                <td>Число (для округления)</td>
+            </tr>
+            <tr>
+                <td><code>Math.max()</code></td>
+                <td>Находит наибольшее из чисел.</td>
+                <td><code>Math.max(1, 2, 3) → 3</code></td>
+                <td>Несколько чисел</td>
+            </tr>
+            <tr>
+                <td><code>Math.min()</code></td>
+                <td>Находит наименьшее из чисел.</td>
+                <td><code>Math.min(1, 2, 3) → 1</code></td>
+                <td>Несколько чисел</td>
+            </tr>
+            <tr>
+                <td><strong>Типы данных</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>typeof</code></td>
+                <td>Оператор, который возвращает тип данных.</td>
+                <td><code>typeof 'Hello' → 'string'</code></td>
+                <td>Нет</td>
+            </tr>
+            <tr>
+                <td><code>instanceof</code></td>
+                <td>Оператор, который проверяет, является ли объект экземпляром класса.</td>
+                <td><code>arr instanceof Array → true</code></td>
+                <td>Объект и класс (для проверки)</td>
+            </tr>
+            <tr>
+                <td><strong>События</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>focus</code></td>
+                <td>Событие, возникающее при получении фокуса на элементе.</td>
+                <td><code>element.addEventListener('focus', function() { console.log('Focused'); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><code>blur</code></td>
+                <td>Событие, возникающее при потере фокуса на элементе.</td>
+                <td><code>element.addEventListener('blur', function() { console.log('Blurred'); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><code>change</code></td>
+                <td>Событие, возникающее при изменении значения элемента формы.</td>
+                <td><code>input.addEventListener('change', function() { console.log('Changed'); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><code>input</code></td>
+                <td>Событие, возникающее при изменении значения элемента формы.</td>
+                <td><code>input.addEventListener('input', function() { console.log('Inputted'); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><code>keydown</code></td>
+                <td>Событие, возникающее при нажатии клавиши.</td>
+                <td><code>document.addEventListener('keydown', function(event) { console.log(event.key); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><code>click</code></td>
+                <td>Событие, возникающее при клике на элемент.</td>
+                <td><code>element.addEventListener('click', function() { console.log('Clicked'); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><code>submit</code></td>
+                <td>Событие, возникающее при отправке формы.</td>
+                <td><code>form.addEventListener('submit', function(event) { event.preventDefault(); });</code></td>
+                <td>Событие (объект события)</td>
+            </tr>
+            <tr>
+                <td><strong>Работа с DOM</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>getElementById()</code></td>
+                <td>Возвращает элемент с указанным id.</td>
+                <td><code>document.getElementById('myId');</code></td>
+                <td>id (строка)</td>
+            </tr>
+            <tr>
+                <td><code>querySelector()</code></td>
+                <td>Возвращает первый элемент, соответствующий CSS-селектору.</td>
+                <td><code>document.querySelector('.myClass');</code></td>
+                <td>CSS-селектор (строка)</td>
+            </tr>
+            <tr>
+                <td><code>querySelectorAll()</code></td>
+                <td>Возвращает все элементы, соответствующие CSS-селектору.</td>
+                <td><code>document.querySelectorAll('.myClass');</code></td>
+                <td>CSS-селектор (строка)</td>
+            </tr>
+            <tr>
+                <td><code>setAttribute()</code></td>
+                <td>Устанавливает атрибут для элемента.</td>
+                <td><code>element.setAttribute('src', 'image.jpg');</code></td>
+                <td>Имя атрибута и значение</td>
+            </tr>
+            <tr>
+                <td><strong>Асинхронность/Promises</strong></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><code>Promise</code></td>
+                <td>Объект, представляющий результат асинхронной операции.</td>
+                <td><code>let promise = new Promise((resolve, reject) => { resolve('Success'); });</code></td>
+                <td>Функция (для обработки результата или ошибки)</td>
+            </tr>
+            <tr>
+                <td><code>then()</code></td>
+                <td>Метод для обработки успешного завершения промиса.</td>
+                <td><code>promise.then(result => { console.log(result); });</code></td>
+                <td>Функция (для обработки результата)</td>
+            </tr>
+            <tr>
+                <td><code>catch()</code></td>
+                <td>Метод для обработки ошибок промиса.</td>
+                <td><code>promise.catch(error => { console.error(error); });</code></td>
+                <td>Функция (для обработки ошибки)</td>
+            </tr>
+            <tr>
+                <td><code>finally()</code></td>
+                <td>Метод для выполнения кода после завершения промиса, независимо от успеха или ошибки.</td>
+                <td><code>promise.finally(() => { console.log('Done'); });</code></td>
+                <td>Функция (для выполнения после завершения)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+
+
+</body>
+</html>
